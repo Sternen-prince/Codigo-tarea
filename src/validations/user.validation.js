@@ -27,7 +27,8 @@ export const userBodyValidation = Joi.object({
     rut: Joi.string()
         .min(9)
         .max(12)
-        .pattern(/^\d{1,2}(\.\d{3}){2}-[\dkK]$|^\d{7,8}-[\dkK]$/)
+        // cabe destacar que la mia tambien esta ba incompleta asi que la mejore cosa de que se puedan ingresar los rut sin puntos y con gion por ejemplo xxxxxxxx-x
+        .pattern(/^[1-2]\d{1}(\.\d{3}){2}-[\dkK]$|^[1-2]\d{6}-[\dkK]$|^[1-2]\d{7}-[\dkK]$/)
         .required()
         .messages({
             "string.empty": "El rut no puede estar vacío.",
@@ -35,7 +36,7 @@ export const userBodyValidation = Joi.object({
             "string.base": "El rut debe ser de tipo string.",
             "string.min": "El rut debe tener como mínimo 9 caracteres.",
             "string.max": "El rut debe tener como máximo 12 caracteres",
-            "string.pattern.base": "El rut debe ser con el formato xx.xxx.xxx-x o xxxxxxxx-x"
+            "string.pattern.base": "El rut debe ser con el formato xx.xxx.xxx-x o xxxxxxxx-x o esta ingresando un rut que no es valido el primer digito es _,1,2"
         }),
     email: Joi.string()
         .min(15)
